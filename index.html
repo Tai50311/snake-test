@@ -1,17 +1,54 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>貪食蛇遊戲</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>貪食蛇遊戲</title>
+    <link rel="stylesheet" href="style.css">  </head>
 
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 </head>
-<body>
-  <div id="startScreen">
-    <h1>貪食蛇遊戲</h1>
-    <button onclick="startGame()">開始遊戲</button>
-  </div>
-  <canvas id="game" width="400" height="400"></canvas>
 
+<body>
+    <div id="startScreen">
+        <h1>貪食蛇遊戲</h1>
+        <label for="playerName">玩家名稱：</label>
+        <input type="text" id="playerName" placeholder="請輸入你的名稱">
+        <button onclick="startGame()">開始遊戲</button>
+    </div>
+    <canvas id="game" width="400" height="400"></canvas>
+
+    <div id="gameOverScreen" style="display: none;">
+        <h2>遊戲結束！</h2>
+        <p>你的得分：<span id="finalScore"></span></p>
+        <p>遊玩時間：<span id="playTime"></span> 秒</p>
+        <button onclick="submitScore()">提交分數</button>
+    </div>
+
+    <div id="leaderboardScreen" style="display: none;">
+        <h2>排行榜</h2>
+        <ol id="leaderboard">
+            </ol>
+        <button onclick="showStartScreen()">返回開始畫面</button>
+    </div>
+
+    <script>
+        // Firebase 設定 (請替換成你的設定)
+        const firebaseConfig = {
+            apiKey: "AIzaSyDqmZUrab6tHLRzhpFDg0gbbVEg1BXOe_8",
+            authDomain: "snake-f57e0.firebaseapp.com",
+            projectId: "snake-f57e0",
+            storageBucket: "snake-f57e0.firebasestorage.app",
+            messagingSenderId: "155945005023",
+            appId: "1:155945005023:web:6f97bbf6a6dfafbf841e6a"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+    </script>
+    <script src="script.js"></script>
 </body>
+
 </html>
